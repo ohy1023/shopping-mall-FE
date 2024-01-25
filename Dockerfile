@@ -11,7 +11,7 @@ COPY . ./
 RUN npm run build
 
 # Stage 2: Serve React App with Node.js
-FROM node:14
+FROM node:16
 
 WORKDIR /app
 
