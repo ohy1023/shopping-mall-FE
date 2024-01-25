@@ -14,7 +14,7 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo REACT_APP_KAKAO_REST_API_KEY=${{ secrets.REACT_APP_KAKAO_REST_API_KEY }}\ >> .env
+          echo REACT_APP_IMPORT_IMP=${{ secrets.REACT_APP_IMPORT_IMP }}\ >> .env
 
       # 도커 메타
       - name: Docker meta
@@ -40,15 +40,12 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./Dockerfile.prod
+          file: ./Dockerfile
           platforms: linux/amd64
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
           
-      - name: checkout
-        uses: actions/checkout@master
-
       - name: create remote directory
         uses: appleboy/ssh-action@master
         with:
