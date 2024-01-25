@@ -9,7 +9,7 @@ RUN npm run build
 # 스테이지 2: Node.js로 React 앱 서빙
 FROM node:lts-alpine
 WORKDIR /frontend
-COPY --from=build-stage /app/build /app
+COPY --from=build-stage /frontend/build /frontend
 
 EXPOSE 3000
 
