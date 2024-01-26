@@ -1,18 +1,24 @@
-# 스테이지 1: React 앱 빌드
-FROM node:lts-alpine as build-stage
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
-COPY . ./
-#RUN npm run build
-#
-## 스테이지 2: Node.js로 React 앱 서빙
-#FROM node:lts-alpine
-#WORKDIR /frontend
-#
-## 스테이지 1에서 생성한 build 디렉터리를 /frontend에 복사
-#COPY --from=build-stage /frontend/build /frontend
-#
-#EXPOSE 3000
+# Stage 1: Build React App
+FROM node:14 AS builder
 
-CMD ["npm", "start"]
+WORKDIR /app
+
+COPY package.json yarn.lock ./
+
+RUN yarn install
+
+COPY . .
+
+RUN yarn build
+
+# Stage 2: Setup Nginx and copy build files
+FROM nginx:1.15-alpine
+
+COPY --from=builder /app/build /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose ports and start Nginx
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
