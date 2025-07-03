@@ -1,0 +1,362 @@
+.pay-page-bg {
+  min-height: 100vh;
+  height: 100vh;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+  overflow: hidden;
+}
+
+.pay-container {
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(240, 147, 251, 0.15);
+  padding: 24px 24px 24px 24px;
+  max-width: 1200px;
+  width: 100%;
+  height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.user-info-card {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px 16px 16px 16px;
+  box-shadow: 0 4px 16px rgba(240, 147, 251, 0.08);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.item-card {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px 16px 16px 16px;
+  box-shadow: 0 4px 16px rgba(240, 147, 251, 0.08);
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info-card h3,
+.item-card h3 {
+  margin-bottom: 12px;
+  color: #f5576c;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.user-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.user-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.user-info-item label {
+  color: #888;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.user-info-item span {
+  color: #333;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.membership-section {
+  margin-bottom: 16px;
+}
+
+.membership-section h4 {
+  color: #667eea;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.membership-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.membership-name {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.membership-discount {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.shipping-section {
+  margin-bottom: 8px;
+}
+
+.shipping-section h4 {
+  color: #667eea;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.shipping-address {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.address-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.address-item:last-child {
+  border-bottom: none;
+}
+
+.address-item label {
+  color: #888;
+  font-weight: 500;
+  font-size: 0.8rem;
+  min-width: 70px;
+}
+
+.address-item span {
+  color: #333;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-align: right;
+  flex: 1;
+}
+
+.item-info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.item-label {
+  color: #888;
+  font-weight: 500;
+}
+
+.item-value {
+  color: #333;
+  font-weight: 600;
+}
+
+.item-images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.item-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
+  border: 1.5px solid #eee;
+}
+
+.img-btn {
+  background: rgba(102, 126, 234, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.img-btn:hover {
+  background: rgba(102, 126, 234, 1);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.img-btn:active {
+  transform: scale(0.95);
+}
+
+.image-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-indicators {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  justify-content: center;
+}
+
+.indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.indicator.active {
+  background: #667eea;
+  transform: scale(1.2);
+}
+
+.indicator:hover {
+  background: #667eea;
+  transform: scale(1.1);
+}
+
+.pay-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 14px 0;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.1);
+  flex-shrink: 0;
+}
+
+.pay-btn:disabled {
+  background: #ccc;
+  color: #fff;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.pay-btn:not(:disabled):hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.18);
+}
+
+.cnt-btn {
+  background: #eee;
+  border: none;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cnt-btn:hover {
+  background: #d1d5db;
+}
+
+.cnt-value {
+  display: inline-block;
+  min-width: 28px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .pay-page-bg {
+    padding: 10px 5px;
+  }
+
+  .pay-container {
+    flex-direction: column;
+    padding: 16px 12px 12px 12px;
+    max-width: 98vw;
+    height: calc(100vh - 20px);
+    gap: 16px;
+  }
+
+  .user-info-card,
+  .item-card {
+    width: 100%;
+    padding: 12px 8px 8px 8px;
+    height: auto;
+    max-height: 45vh;
+  }
+
+  .user-info-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .item-img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .img-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+
+  .pay-btn {
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+
+  .membership-card {
+    padding: 10px;
+  }
+
+  .membership-name {
+    font-size: 0.9rem;
+  }
+
+  .membership-discount {
+    font-size: 0.8rem;
+  }
+}
