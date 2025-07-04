@@ -135,12 +135,24 @@ const RequestPay = () => {
                 alert('결제 완료 되었습니다.');
                 navigate(`/order/complete/${merchantUid}`);
               } else {
-                // 5. 사후 검증 실패
-                alert('사후 검증 실패되었습니다.');
+                // 사후 검증 실패 시 주문 취소
+                await axios.delete(`/api/v1/orders/${merchantUid}`, {
+                  data: {
+                    impUid: rsp.imp_uid,
+                    itemUuidList: [itemData.uuid],
+                  },
+                });
+                alert('사후 검증 실패로 인한 결제 취소');
               }
             } catch (error) {
-              alert('사후 검증 실패되었습니다.');
-              console.error('사후 검증 요청 오류', error);
+              // 사후 검증 자체가 실패한 경우에도 주문 취소
+              await axios.delete(`/api/v1/orders/${merchantUid}`, {
+                data: {
+                  impUid: rsp.imp_uid,
+                  itemUuidList: [itemData.uuid],
+                },
+              });
+              alert('사후 검증 실패로 인한 결제 취소');
             }
           } else {
             try {

@@ -34,25 +34,43 @@ const OrderDetailsDisplay = React.memo(
 
         <div className="order-info-section">
           <h4>상품 정보</h4>
-          {orderDetails.itemName && (
-            <div className="info-row">
-              <span className="info-label">상품명 : </span>
-              <span className="info-value">{orderDetails.itemName}</span>
-            </div>
-          )}
-          {orderDetails.brandName && (
-            <div className="info-row">
-              <span className="info-label">브랜드 : </span>
-              <span className="info-value">{orderDetails.brandName}</span>
-            </div>
-          )}
-          {typeof orderDetails.totalPrice === 'number' && (
-            <div className="info-row">
-              <span className="info-label">결제 금액 : </span>
-              <span className="info-value">
-                {orderDetails.totalPrice.toLocaleString('ko-KR')} 원
-              </span>
-            </div>
+          {orderDetails.orderItemList &&
+          orderDetails.orderItemList.length > 0 ? (
+            orderDetails.orderItemList.map((item, idx) => (
+              <div
+                className="info-row"
+                key={item.itemUuid}
+                style={{
+                  alignItems: 'center',
+                  marginBottom: 8,
+                  display: 'flex',
+                }}
+              >
+                <img
+                  src={item.thumbnail}
+                  alt={item.itemName}
+                  style={{
+                    width: 48,
+                    height: 48,
+                    objectFit: 'cover',
+                    marginRight: 12,
+                    borderRadius: 6,
+                  }}
+                />
+                <div>
+                  <div>
+                    <b>{item.itemName}</b>{' '}
+                    <span style={{ color: '#888' }}>({item.brandName})</span>
+                  </div>
+                  <div>
+                    수량: {item.count}개 / 가격:{' '}
+                    {item.orderPrice.toLocaleString()}원
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="info-row">상품 정보가 없습니다.</div>
           )}
         </div>
 
@@ -155,9 +173,15 @@ const OrderConfirmation = () => {
     const confirmCancel = window.confirm('정말로 주문을 취소하시겠습니까?');
     if (confirmCancel) {
       try {
+        // itemUuidList 생성
+        const itemUuidList = orderDetails.orderItemList
+          ? orderDetails.orderItemList.map((item) => item.itemUuid)
+          : [];
+
         const response = await axios.delete(`/api/v1/orders/${merchantUid}`, {
           data: {
-            itemUuid: orderDetails.itemUuid,
+            impUid: orderDetails.impUid,
+            itemUuidList: itemUuidList,
           },
         });
 

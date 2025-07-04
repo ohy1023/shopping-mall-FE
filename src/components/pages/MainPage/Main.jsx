@@ -161,8 +161,8 @@ const Main = () => {
   }, [navigate]);
 
   const handleCartTest = useCallback(() => {
-    alert('장바구니 테스트 기능은 준비 중입니다.');
-  }, []);
+    navigate('/cart');
+  }, [navigate]);
 
   return (
     <div className="main-page">
